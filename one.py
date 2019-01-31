@@ -10,12 +10,21 @@ class Names(Resource):
         age = len(name)
         return {'name': name, 'age': age}
 
+class Cars(Resource):
+    def get(self, car):
+        make = car.upper()
+        model = car.lower()
+        return {'make': make, 'model': model}
 
 @app.route('/')
 def home():
     return "HELLO"
 
+@app.route('/Test/')
+def test():
+    return "Howdy"
 
 api.add_resource(Names, '/names/<string:name>')
+api.add_resource(Cars, '/cars/<string:car>')
 
 app.run(port=5000)
